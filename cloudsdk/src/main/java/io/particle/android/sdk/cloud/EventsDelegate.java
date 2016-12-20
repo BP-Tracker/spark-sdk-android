@@ -155,6 +155,11 @@ class EventsDelegate {
 
         void stopListening() {
             future.cancel(false);
+            try {
+                sseEventSource.close();
+            } catch (IOException e) {
+                log.w("could not close event source: " + e.getMessage());
+            }
         }
 
 
